@@ -1,1 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>WebAssembly Test</title>
+</head>
+<body>
+    <h1>WebAssembly Test</h1>
+    <script>
+        async function loadWasm() {
+            try {
+                const response = await fetch('hackingC.wasm');
+                const bytes = await response.arrayBuffer();
+                const { instance } = await WebAssembly.instantiate(bytes);
+                console.log('Exporte:', instance.exports);
+            } catch (err) {
+                console.error('Fehler:', err);
+            }
+        }
+        loadWasm();
+    </script>
+</body>
+</html>
 
